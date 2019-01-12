@@ -1,0 +1,1 @@
+{"version":3,"file":"audits.route.js","sourceRoot":"","sources":["../../../../../../../../src/main/webapp/app/admin/audits/audits.route.ts"],"names":[],"mappings":";;AAEA,2CAAwE;AAExE,uDAAqD;AAExC,QAAA,WAAW,GAAU;IAC9B,IAAI,EAAE,QAAQ;IACd,SAAS,EAAE,kCAAe;IAC1B,OAAO,EAAE;QACL,YAAY,EAAE,oCAAsB;KACvC;IACD,IAAI,EAAE;QACF,SAAS,EAAE,cAAc;QACzB,WAAW,EAAE,qBAAqB;KACrC;CACJ,CAAC"}

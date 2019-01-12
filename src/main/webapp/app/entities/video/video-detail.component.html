@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="video">
+            <h2><span jhiTranslate="faeBooApp.video.detail.title">Video</span> {{video.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="faeBooApp.video.videoURL">Video URL</span></dt>
+                <dd>
+                    <span>{{video.videoURL}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.video.size">Size</span></dt>
+                <dd>
+                    <span>{{video.size}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.video.post">Post</span></dt>
+                <dd>
+                    <div *ngIf="video.post">
+                        <a [routerLink]="['/post', video.post?.id, 'view']">{{video.post?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/video', video.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

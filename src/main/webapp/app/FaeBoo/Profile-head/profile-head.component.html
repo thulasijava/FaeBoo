@@ -1,0 +1,87 @@
+<div class="main-cont">
+
+    <div class = "friend-cont">
+
+        <div class="friend-pic friend4" id = "friend7">
+            <img class ="friend-photo friend4" src = "../../../content/images/faceofbooks3.jpg">
+        </div>
+
+        <div class="friend-pic friend3" id = "friend5">
+            <img class ="friend-photo friend3" src = "../../../content/images/faceofbooks4.png">
+        </div>
+
+        <div class="friend-pic friend2" id = "friend3">
+            <img class ="friend-photo" src = "../../../content/images/faceofbooks2.jpg">
+        </div>
+
+        <div class="friend-pic friend1" id = "friend1">
+            <img class ="friend-photo" src = "../../../content/images/faceofbooks1.png">
+        </div>
+
+        <div class = "profile-pic">
+            <img class ="friend-photo" src = "../../../content/images/defaultphoto.png">
+        </div>
+
+        <div class="friend-pic friend1" id = "friend2">
+            <img class ="friend-photo" src = "../../../content/images/defaultphoto.png">
+        </div>
+
+        <div class="friend-pic friend2" id = "friend4">
+            <img class ="friend-photo" src = "../../../content/images/defaultphoto.png">
+        </div>
+
+        <div class="friend-pic friend3" id = "friend6">
+            <img class ="friend-photo" src = "../../../content/images/defaultphoto.png">
+        </div>
+
+        <div class="friend-pic friend4" id = friend8>
+            <img class ="friend-photo" src = "../../../content/images/defaultphoto.png">
+        </div>
+
+    </div>
+
+
+    <div class = "settings-container">
+
+        <button>Settings</button>
+        <button>Change Profile</button>
+        <button (click)="toggle()">Change Bio</button>
+        <button>Friends</button>
+
+    </div>
+
+    <div class = "bioTextArea" [hidden]="!bioChange">
+        <div id = "update-bio-text">Enter your new Bio below: </div>
+        <textarea id = "bioinputtext" [(ngModel)]="bio"></textarea>
+    </div>
+
+    <hr>
+
+    <div id = "bio-cont">{{bio}}</div>
+
+    <hr>
+
+    <div id = "feed">
+
+        <div class = "post">
+            <div>
+                <textarea id = "post-area" [(ngModel)]="str"></textarea>
+            </div>
+
+            <div id = "postButton-container">
+                <div class = "button-holder"><button class = "postBtn">Schedule</button></div>
+                <div class = "button-holder"><button class = "postBtn">Memo</button></div>
+                <div class = "button-holder"><button class = "postBtn">Photo</button></div>
+                <div class = "button-holder"><button class = "postBtn" (click)="submitPost();loadAll();">Submit</button></div>
+            </div>
+
+            <p id = "msg">Create a post...</p>
+        </div>
+    </div>
+
+    <div id = "post-container">
+            <div *ngFor="let post of posts;trackBy: trackId" class = "single-post">
+                {{post.content}}
+            </div>
+    </div>
+</div>

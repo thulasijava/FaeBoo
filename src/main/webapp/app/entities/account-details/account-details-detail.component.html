@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="accountDetails">
+            <h2><span jhiTranslate="faeBooApp.accountDetails.detail.title">Account Details</span> {{accountDetails.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="faeBooApp.accountDetails.securityQuestion">Security Question</span></dt>
+                <dd>
+                    <span>{{accountDetails.securityQuestion}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.accountDetails.securityAnswer">Security Answer</span></dt>
+                <dd>
+                    <span>{{accountDetails.securityAnswer}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.accountDetails.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{accountDetails.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.accountDetails.userAccount">User Account</span></dt>
+                <dd>
+                    {{accountDetails.userAccount?.email}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/account-details', accountDetails.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

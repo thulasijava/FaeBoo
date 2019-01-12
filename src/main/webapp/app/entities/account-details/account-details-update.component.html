@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-account-details-heading" jhiTranslate="faeBooApp.accountDetails.home.createOrEditLabel">Create or edit a Account Details</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!accountDetails.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="accountDetails.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.accountDetails.securityQuestion" for="field_securityQuestion">Security Question</label>
+                    <input type="text" class="form-control" name="securityQuestion" id="field_securityQuestion"
+                        [(ngModel)]="accountDetails.securityQuestion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.accountDetails.securityAnswer" for="field_securityAnswer">Security Answer</label>
+                    <input type="text" class="form-control" name="securityAnswer" id="field_securityAnswer"
+                        [(ngModel)]="accountDetails.securityAnswer" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.accountDetails.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                        [(ngModel)]="accountDetails.phoneNumber" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.accountDetails.userAccount" for="field_userAccount">User Account</label>
+                    <select class="form-control" id="field_userAccount" name="userAccount" [(ngModel)]="accountDetails.userAccount" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === accountDetails.userAccount?.id ? accountDetails.userAccount : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.email}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

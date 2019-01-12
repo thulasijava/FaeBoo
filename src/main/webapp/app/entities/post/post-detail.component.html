@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="post">
+            <h2><span jhiTranslate="faeBooApp.post.detail.title">Post</span> {{post.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="faeBooApp.post.numberOfComments">Number Of Comments</span></dt>
+                <dd>
+                    <span>{{post.numberOfComments}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.post.content">Content</span></dt>
+                <dd>
+                    <span>{{post.content}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.post.likes">Likes</span></dt>
+                <dd>
+                    <span>{{post.likes}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.post.dislikes">Dislikes</span></dt>
+                <dd>
+                    <span>{{post.dislikes}}</span>
+                </dd>
+                <dt><span jhiTranslate="faeBooApp.post.owner">Owner</span></dt>
+                <dd>
+                    {{post.owner?.email}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/post', post.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

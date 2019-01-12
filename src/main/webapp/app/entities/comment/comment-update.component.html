@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-comment-heading" jhiTranslate="faeBooApp.comment.home.createOrEditLabel">Create or edit a Comment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!comment.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="comment.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.comment.content" for="field_content">Content</label>
+                    <input type="text" class="form-control" name="content" id="field_content"
+                        [(ngModel)]="comment.content" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.comment.likes" for="field_likes">Likes</label>
+                    <input type="number" class="form-control" name="likes" id="field_likes"
+                        [(ngModel)]="comment.likes" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.comment.dislikes" for="field_dislikes">Dislikes</label>
+                    <input type="number" class="form-control" name="dislikes" id="field_dislikes"
+                        [(ngModel)]="comment.dislikes" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.comment.commenter" for="field_commenter">Commenter</label>
+                    <select class="form-control" id="field_commenter" name="commenter" [(ngModel)]="comment.commenter" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === comment.commenter?.id ? comment.commenter : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.email}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.comment.post" for="field_post">Post</label>
+                    <select class="form-control" id="field_post" name="post" [(ngModel)]="comment.post" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="postOption.id === comment.post?.id ? comment.post : postOption" *ngFor="let postOption of posts; trackBy: trackPostById">{{postOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

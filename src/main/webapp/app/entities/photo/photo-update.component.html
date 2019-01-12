@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-photo-heading" jhiTranslate="faeBooApp.photo.home.createOrEditLabel">Create or edit a Photo</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!photo.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="photo.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.photo.imageURL" for="field_imageURL">Image URL</label>
+                    <input type="text" class="form-control" name="imageURL" id="field_imageURL"
+                        [(ngModel)]="photo.imageURL" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.photo.size" for="field_size">Size</label>
+                    <input type="number" class="form-control" name="size" id="field_size"
+                        [(ngModel)]="photo.size" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.photo.post" for="field_post">Post</label>
+                    <select class="form-control" id="field_post" name="post" [(ngModel)]="photo.post" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="postOption.id === photo.post?.id ? photo.post : postOption" *ngFor="let postOption of posts; trackBy: trackPostById">{{postOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="faeBooApp.photo.album" for="field_album">Album</label>
+                    <select class="form-control" id="field_album" multiple name="album" [(ngModel)]="photo.albums">
+                        <option [ngValue]="getSelected(photo.albums, albumOption)" *ngFor="let albumOption of albums; trackBy: trackAlbumById">{{albumOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

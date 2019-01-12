@@ -1,0 +1,62 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="faeBooApp.friend.home.title">Friends</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-friend" [routerLink]="['/friend/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="faeBooApp.friend.home.createLabel">
+            Create new Friend
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="friends">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="faeBooApp.friend.topFriend">Top Friend</span></th>
+            <th><span jhiTranslate="faeBooApp.friend.user">User</span></th>
+            <th><span jhiTranslate="faeBooApp.friend.friend">Friend</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let friend of friends ;trackBy: trackId">
+                <td><a [routerLink]="['/friend', friend.id, 'view' ]">{{friend.id}}</a></td>
+                <td>{{friend.topFriend}}</td>
+                <td>
+                    {{friend.user?.email}}
+                </td>
+                <td>
+                    {{friend.friend?.email}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/friend', friend.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/friend', friend.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'friend/'+ friend.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

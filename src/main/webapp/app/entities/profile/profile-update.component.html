@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-profile-heading" jhiTranslate="faeBooApp.profile.home.createOrEditLabel">Create or edit a Profile</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!profile.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="profile.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.profile.bio" for="field_bio">Bio</label>
+                    <input type="text" class="form-control" name="bio" id="field_bio"
+                        [(ngModel)]="profile.bio" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.profile.accessible" for="field_accessible">Accessible</label>
+                    <input type="checkbox" class="form-control" name="accessible" id="field_accessible"
+                        [(ngModel)]="profile.accessible" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="faeBooApp.profile.userProfile" for="field_userProfile">User Profile</label>
+                    <select class="form-control" id="field_userProfile" name="userProfile" [(ngModel)]="profile.userProfile" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === profile.userProfile?.id ? profile.userProfile : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.email}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
