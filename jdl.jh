@@ -1,0 +1,95 @@
+entity AccountDetails{
+    securityQuestion String,
+    securityAnswer String,
+    phoneNumber String
+}
+
+entity Profile{
+    bio String,
+    accessible Boolean
+}
+
+entity Friend{
+    topFriend Boolean
+}
+
+entity Album{
+    name String,
+    description String,
+}
+
+entity Photo {
+ 	imageURL String,
+    size Long
+}
+
+entity Video {
+    videoURL String,
+    size Long,
+}
+
+entity Post {
+    numberOfComments Long,
+    content String,
+  	likes Long,
+    dislikes Long
+}
+
+entity Comment {
+    content String,
+    likes Long,
+    dislikes Long
+}
+
+relationship ManyToOne {
+	Comment{commenter(email)} to User
+}
+
+relationship ManyToOne {
+	Comment{post} to Post
+}
+
+relationship ManyToOne {
+	Post{owner(email)} to User
+}
+
+relationship ManyToOne {
+	Photo{post} to Post
+}
+
+relationship ManyToOne {
+	Video{post} to Post
+}
+
+relationship ManyToOne {
+	Album{owner(email)} to User
+}
+
+relationship ManyToMany {
+	Photo{album(name)} to Album
+}
+
+relationship OneToOne {
+	AccountDetails{userAccount(email)} to User
+}
+
+relationship OneToOne {
+	Profile{userProfile(email)} to User
+}
+
+relationship ManyToOne{
+	Friend{user(email)} to User
+}
+
+relationship ManyToOne{
+	Friend{friend(email)} to User
+}
+
+
+
+
+
+
+
+
+
